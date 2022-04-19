@@ -1,0 +1,1 @@
+python rtg.py run autotrader.py
