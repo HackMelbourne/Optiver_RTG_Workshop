@@ -76,15 +76,17 @@ class AutoTrader(BaseAutoTrader):
         prices are reported along with the volume available at each of those
         price levels.
         """
-        vwap_buy = bid_prices[0]
-        vwap_sell = ask_prices[0]
-        print(vwap_buy, vwap_sell)
+        if bid_volumes[0]+ask_volumes[0] == 0:
+            return
+        vwap = (bid_prices[0]*ask_volumes[0]+ask_prices[0]*bid_volumes[0])/(bid_volumes[0]+ask_volumes[0])
+
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
 
         if instrument == Instrument.ETF:
-            new_bid_price = int(vwap_buy/TICK_SIZE_IN_CENTS) * TICK_SIZE_IN_CENTS
-            new_ask_price = int(vwap_sell/TICK_SIZE_IN_CENTS) * TICK_SIZE_IN_CENTS
+            new_bid_price = int(vwap/TICK_SIZE_IN_CENTS) * TICK_SIZE_IN_CENTS -200
+            new_ask_price = int(vwap/TICK_SIZE_IN_CENTS) * TICK_SIZE_IN_CENTS +200
+            print(new_bid_price, new_ask_price)
             # theo=int(((new_bid_price+new_ask_price)/2)//TICK_SIZE_IN_CENTS*TICK_SIZE_IN_CENTS)
 
             if self.bid_id != 0 and new_bid_price not in (self.bid_price, 0):
