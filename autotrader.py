@@ -76,36 +76,11 @@ class AutoTrader(BaseAutoTrader):
         prices are reported along with the volume available at each of those
         price levels.
         """
-        vwap_buy = (sum(
-            map(lambda x, y: x * y, bid_prices[:1], bid_volumes[:1]))) / sum(bid_volumes[:1]) if sum(bid_volumes[:1]) > 0 else 0
-        vwap_sell = (sum(
-            map(lambda x, y: x * y, ask_prices[:1], ask_volumes[:1]))) / sum(ask_volumes[:1]) if sum(ask_volumes[:1]) > 0 else 0
+        vwap_buy = bid_prices[0]
+        vwap_sell = ask_prices[0]
         print(vwap_buy, vwap_sell)
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
-        # if instrument == Instrument.FUTURE:
-        #     price_adjustment = - (self.position // LOT_SIZE) * TICK_SIZE_IN_CENTS
-        #     new_bid_price = bid_prices[0] + price_adjustment if bid_prices[0] != 0 else 0
-        #     new_ask_price = ask_prices[0] + price_adjustment if ask_prices[0] != 0 else 0
-        #
-        #     if self.bid_id != 0 and new_bid_price not in (self.bid_price, 0):
-        #         self.send_cancel_order(self.bid_id)
-        #         self.bid_id = 0
-        #     if self.ask_id != 0 and new_ask_price not in (self.ask_price, 0):
-        #         self.send_cancel_order(self.ask_id)
-        #         self.ask_id = 0
-        #
-        #     if self.bid_id == 0 and new_bid_price != 0 and self.position < POSITION_LIMIT:
-        #         self.bid_id = next(self.order_ids)
-        #         self.bid_price = new_bid_price
-        #         self.send_insert_order(self.bid_id, Side.BUY, new_bid_price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-        #         self.bids.add(self.bid_id)
-        #
-        #     if self.ask_id == 0 and new_ask_price != 0 and self.position > -POSITION_LIMIT:
-        #         self.ask_id = next(self.order_ids)
-        #         self.ask_price = new_ask_price
-        #         self.send_insert_order(self.ask_id, Side.SELL, new_ask_price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-        #         self.asks.add(self.ask_id)
 
         if instrument == Instrument.ETF:
             new_bid_price = int(vwap_buy/TICK_SIZE_IN_CENTS) * TICK_SIZE_IN_CENTS
@@ -144,11 +119,11 @@ class AutoTrader(BaseAutoTrader):
                          price, volume)
         if client_order_id in self.bids:
             self.position += volume
-            self.send_hedge_order(next(self.order_ids), Side.ASK, MINIMUM_BID, volume)
+            # self.send_hedge_order(next(self.order_ids), Side.ASK, MINIMUM_BID, volume)
         elif client_order_id in self.asks:
             self.position -= volume
-            self.send_hedge_order(next(self.order_ids), Side.BID,
-                                  MAXIMUM_ASK//TICK_SIZE_IN_CENTS*TICK_SIZE_IN_CENTS, volume)
+            # self.send_hedge_order(next(self.order_ids), Side.BID,
+            #                       MAXIMUM_ASK//TICK_SIZE_IN_CENTS*TICK_SIZE_IN_CENTS, volume)
 
     def on_order_status_message(self, client_order_id: int, fill_volume: int, remaining_volume: int,
                                 fees: int) -> None:
