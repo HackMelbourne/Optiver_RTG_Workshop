@@ -2,8 +2,8 @@ import asyncio
 
 from typing import Any, Callable, Optional
 
-MAX_UNHEDGED_LOTS: int = 10
-UNHEDGED_LOTS_TIME_LIMIT: int = 60
+MAX_UNHEDGED_LOTS: int = 100
+UNHEDGED_LOTS_TIME_LIMIT: int = 600
 
 
 class UnhedgedLots:

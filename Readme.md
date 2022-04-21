@@ -2,6 +2,10 @@
 
 ## IT'S READY TRADER GO TIME
 
+This project has been modified by HackMelbourne for the purposes of teaching you the basics of trading,
+and to show you how to make your own autotrader. The original zip provided by Optiver is available in the Releases
+section of this repo!
+
 Welcome to the ultimate team student trading competition. Competitors get to
 learn all the fundamentals of trading and truly test their coding and analytical
 skills. The aim is to build and optimise a trading algorithm that outperforms
@@ -25,7 +29,7 @@ the [PySide6 package](https://pypi.org/project/PySide6/) which you can do by
 running
 
 ```shell
-pip3 install PySide6
+pip install PySide6
 ```
 
 in your Python virtual environment.
@@ -35,15 +39,16 @@ in your Python virtual environment.
 To run a Ready Trader Go match with one or more autotraders, simply run:
 
 ```shell
-python3 rtg.py run [AUTOTRADER FILENAME [AUTOTRADER FILENAME]]
+python rtg.py run [AUTOTRADER FILENAME [AUTOTRADER FILENAME]]
 ```
 
 For example:
 
 ```shell
-python3 rtg.py run autotrader.py
+python rtg.py run autotrader.py
 ```
 
+If you're on Windows, you can just run `run.bat` which is provided for you.
 Each autotrader must have a corresponding JSON configuration file as described below.
 
 ## What's in this archive?
@@ -163,7 +168,7 @@ To run a match, use the "run" command and specify the autotraders you
 wish to participate in the match:
 
 ```shell
-python3 rtg.py run [AUTOTRADER FILENAME [AUTOTRADER FILENAME]]
+python rtg.py run [AUTOTRADER FILENAME [AUTOTRADER FILENAME]]
 ```
 
 Each autotrader must have a corresponding JSON file (with the same filename,
@@ -193,39 +198,8 @@ To replay a match, use the "replay" command and specify the name of the
 match events file you wish to replay:
 
 ```shell
-python3 rtg.py replay match_events.csv
+python rtg.py replay match_events.csv
 ```
 
-### Autotrader environment
-
-Autotraders in Ready Trader Go will be run in the following environment:
-
-* Operating system: Linux
-* Python version: 3.10.2
-* Available libraries: numpy 1.22.2; pandas 1.4.1; scipy 1.8.0
-* Memory limit: 2GB
-* Total disk usage limit: 100MB (including the log file)
-* Maximum number of autotraders per match: 8
-* Autotraders may not create sub-processes but may have multiple threads
-* Autotraders may not access the internet
-
-## How do I submit my AutoTrader?
-
-Shortly after the competition begins you'll be supplied with the details of
-a [GIT repository](https://git-scm.com) which you can use to submit your
-autotrader.
-
-To access the GIT repository, you'll need to configure your GIT client with
-your _private_ key, and we'll use the _public_ key you gave us when you
-registered to verify that it's you.
-
-To submit your autotrader, simply commit your `autotrader.py` file to the
-GIT repository. If you're using C++, simply commit your `autotrader.h` and
-`autotrader.cc` files. Do _not_ put the file(s) in a folder and do _not_
-include any other files (any other files will be ignored). You may only
-submit one autotrader (i.e. you cannot submit both a Python and a C++
-autotrader).
-
-You may replace your autotrader with a new one at any time. When each
-tournament starts we'll use the autotrader in your GIT repository at the
-cut-off time for that tournament.
+### Slides used in the workshop
+Download the workshop slides here: ...TODO provide link...
