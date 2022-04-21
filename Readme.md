@@ -14,15 +14,17 @@ all others on a virtual exchange.
 To learn more about the competition, visit [readytradergo.optiver.com]
 (https://readytradergo.optiver.com).
 
+# Performance
+Performance of our bots we will build here:
+- `adv` (using future and vwap): $17000 at 800 seconds
+- `better` (simple vwap): $12000 at 800 seconds
+- `simple` (just copying what the market is doing): loses money at 800 seconds
+
+
 ## Getting started
 
 To run Ready Trader Go, you'll need Python version 3.9 or above and PySide6.
 You can download Python from [www.python.org](https://www.python.org).
-
-Once you have installed Python, you'll need to create a Python virtual
-environment, and you can find instructions for creating and using virtual
-environments at
-[docs.python.org/3/library/venv.html](https://docs.python.org/3/library/venv.html).
 
 To use the Ready Trader Go graphical user interface, you'll need to install
 the [PySide6 package](https://pypi.org/project/PySide6/) which you can do by
