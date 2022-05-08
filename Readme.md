@@ -204,4 +204,4 @@ python rtg.py replay match_events.csv
 ```
 
 ### Slides used in the workshop
-Download the workshop slides here: ...TODO provide link...
+Download the workshop slides here: [Slides.pptx](Slides.pptx)
